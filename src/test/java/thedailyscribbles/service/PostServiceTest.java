@@ -62,15 +62,15 @@ public class PostServiceTest {
     }
     
 
-//    @Test
-//    void testSearchPost() {
-//        when(postRepo.findAllByTitle(post.getTitle())).thenReturn(Arrays.asList(post));
-//
-//        List<Post> foundPosts = postService.searchPost(post.getTitle());
-//
-//        verify(postRepo, times(1)).findAllByTitle(post.getTitle());
-//        assertEquals(Arrays.asList(post), foundPosts);
-//    }
+    @Test
+    void testSearchPost() {
+        when(postRepo.findAllByTitle(post.getTitle())).thenReturn(Arrays.asList(post));
+
+        List<Post> foundPosts = postService.searchPost(post.getTitle());
+
+        verify(postRepo, times(1)).findAllByTitle(post.getTitle());
+        assertEquals(Arrays.asList(post), foundPosts);
+    }
 
     @Test
     void testFindByIdWhenPostExists() throws PostNotFoundException {

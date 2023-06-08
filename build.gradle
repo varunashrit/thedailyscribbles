@@ -11,7 +11,7 @@ plugins {
 sonar{
   properties{
     property 'sonar.projectName','thedailyscribbles'
-    //property 'sonar.token', 'sqp_ddc59fb6b698702f00d597a771c0f1b530935f1a'
+    //property 'sonar.token', 'sqp_6e6fb2bc39144a0c415ecb1e0a04102667c26a22'
     property 'sonar.login', 'admin'
     property 'sonar.password', 'admin@1'
   }
@@ -67,7 +67,6 @@ property ('sonar.token', 'sqp_ddc59fb6b698702f00d597a771c0f1b530935f1a')
 }
 
 }
-
 tasks.named('test') {
 	useJUnitPlatform()
 	finalizedBy jacocoTestReport 
@@ -81,8 +80,20 @@ jacoco {
 jacocoTestReport {
    dependsOn test
     reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        xml.required = true
+        //csv.required = false
+        //html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
+    finalizedBy jacocoTestCoverageVerification
 }
+
+jacocoTestCoverageVerification{
+  violationRules{
+   rule{
+     enabled=true
+     limit{
+      minimum=0.25
+      }
+   }
+  }
+}  
